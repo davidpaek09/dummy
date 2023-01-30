@@ -64,7 +64,7 @@ let config = {
 					
 					{
 						symbol: "Your Calendar",
-						url: "Use google calendar's secret address in iCal Format"
+						url: "Use google calendar's secret address in iCal Format" // To add url, go to Google Calendar > Settings > Choose the Calendar you want to add on the left side bar under "Settings for my calendars" > copy and paste "secret address in iCal format" into the url
 					},
 					*/
 				]
