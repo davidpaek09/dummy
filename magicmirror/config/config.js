@@ -51,7 +51,7 @@ let config = {
 		},
 		{
 			module: "calendar",
-			header: "David's Calendar",
+			header: "Your Calendar",
 			position: "top_left",
 			config: {
 				fetchInterval: 1000,
@@ -197,7 +197,7 @@ let config = {
 			  miniBarConfig: {
 				album: true, // display Album name in miniBar style
 				scroll: true, // scroll title / artist / album in miniBar style
-				logo: true, // display Spotify logo in miniBar style
+				logo: true, // display Spotify logo in miniBar style !
 			  }
 			}
 		  }
