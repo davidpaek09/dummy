@@ -154,7 +154,7 @@ let config = {
 		*/
 		{
 			module: "MMM-Spotify",
-			position: "bottom_bar", // "bottom_bar" or "top_bar" for miniBar
+			position: "lower_third", // "bottom_bar" or "top_bar" for miniBar
 			config: {
 			  debug: false, // debug mode
 			  style: "default", // "default" or "mini" available (inactive for miniBar)
@@ -197,7 +197,7 @@ let config = {
 			  miniBarConfig: {
 				album: true, // display Album name in miniBar style
 				scroll: true, // scroll title / artist / album in miniBar style
-				logo: true, // display Spotify logo in miniBar style !
+				logo: true, // display Spotify logo in miniBar style 
 			  }
 			}
 		  }
