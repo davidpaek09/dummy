@@ -63,7 +63,7 @@ let config = {
 					},
 					*/
 					{
-						symbol: "David's Calendar",
+						symbol: "Your Calendar",
 						url: "https://calendar.google.com/calendar/ical/davidpaek98%40gmail.com/private-6a0381d7a681f5b93ba161f227fe507d/basic.ics"
 					},
 					
