@@ -159,7 +159,7 @@ let config = {
 			  debug: false, // debug mode
 			  style: "default", // "default" or "mini" available (inactive for miniBar)
 			  moduleHeight: 360,
-			  moduleWidth: 240, // width of the module in px
+			  moduleWidth: 230, // width of the module in px
 			  control: "default", // "default" or "hidden"
 			  showAlbumLabel: true, // if you want to show the label for the current song album
 			  showVolumeLabel: true, // if you want to show the label for the current volume
