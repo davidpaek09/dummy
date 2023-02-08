@@ -70,6 +70,10 @@ let config = {
 				]
 			}
 		},
+		{
+			module: "compliments",
+			position: "lower_third",
+		},
 		/*
 		{
 			module: "compliments",
@@ -122,6 +126,10 @@ let config = {
 			}
 		},
 		{
+			module: "helloworld",
+			position: "upper_third"
+		},
+		{
 			module: "weather",
 			position: "top_right",
 			header: "Weather Forecast",
@@ -152,6 +160,13 @@ let config = {
 			}
 		},
 		*/
+		{
+			module: 'MMM-SmartTouch', 
+			position: 'bottom_center',    // This can be any of the regions.(bottom-center Recommended)
+			config:{ 
+			  // None configuration options defined 
+			}
+		},
 		{
 			module: "MMM-Spotify",
 			position: "lower_third", // "bottom_bar" or "top_bar" for miniBar
@@ -200,7 +215,43 @@ let config = {
 				logo: true, // display Spotify logo in miniBar style 
 			  }
 			}
-		  }
+		},
+		/*
+		{
+			module: 'MMM-NotificationTrigger',
+			//This module works in Background, so you don't need to describe `position`.
+			config: {
+			  useWebhook: false, // If you want to activate webhook as Notification emitter, set true. (eg. IFTTT)
+			  triggers:[ // Array of triggers.
+				{
+				  trigger: "INCOMINIG_NOTIFICATION", //REQUIRED
+				  triggerSenderFilter: (sender) => { //OPTIONAL should return true or false
+					if (sender == "....") {
+					  return true
+					}
+					return false
+				  },
+				  triggerPayloadFilter: (payload) => { //OPTIONAL should return true or false
+					if (typeof payload.value !== 'undefined' && payload.value > 0) {
+					  return true
+					}
+					return false
+				  },
+				  fires: [ // Array of fires. You can enable multi-firing with one trigger.
+					{
+					  fire:"OUTGOING_NOTIFICATION", //REQUIRED
+					  payload: (payload) => { //OPTIONAL. transform received payload to what your target module wants.
+						return payload
+					  },
+					  delay: 1000, //OPTIONAL, if this is set, your outgoing notification will be fired after delay.
+					  exec: "ls -l" //OPTIONAL, if exists, this script will be executed, and the result will be returned with "OUTGOING_NOTIFICATION_RESULT" and payload.  Can also be specified as a function which accepts the payload as an argument and returns the command to execute.
+					},
+				  ],
+				},
+			  ]
+			},
+		}
+		*/
 	]
 };
 

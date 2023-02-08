@@ -98,6 +98,7 @@ Module.register("weather", {
 
 	// Override notification handler.
 	notificationReceived: function (notification, payload, sender) {
+		
 		if (notification === "CALENDAR_EVENTS") {
 			const senderClasses = sender.data.classes.toLowerCase().split(" ");
 			if (senderClasses.indexOf(this.config.calendarClass.toLowerCase()) !== -1) {
@@ -110,12 +111,17 @@ Module.register("weather", {
 					}
 				}
 			}
-		} else if (notification === "INDOOR_TEMPERATURE") {
+		} 
+		else if (notification === "INDOOR_TEMPERATURE") {
 			this.indoorTemperature = this.roundValue(payload);
 			this.updateDom(300);
-		} else if (notification === "INDOOR_HUMIDITY") {
+		} 
+		else if (notification === "INDOOR_HUMIDITY") {
 			this.indoorHumidity = this.roundValue(payload);
 			this.updateDom(300);
+		}
+		else if (notification === "TESTING") {
+			Log.log(this.name + "received the test notification: ");
 		}
 	},
 
