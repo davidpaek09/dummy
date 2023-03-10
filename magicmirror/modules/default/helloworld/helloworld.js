@@ -16,11 +16,5 @@ Module.register("helloworld", {
 
 	getTemplateData: function () {
 		return this.config;
-	},
-
-	notificationReceived: function (notification, payload, sender) {
-		if (notification === "TESTING"){
-		  Log.log(this.name + "has caught the test notification");
-		}
-	},
+	}
 });

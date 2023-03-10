@@ -6,6 +6,7 @@
  * By Michael Teeuw https://michaelteeuw.nl
  * MIT Licensed.
  */
+
 Module.register("calendar", {
 	// Define module defaults
 	defaults: {
@@ -46,7 +47,7 @@ Module.register("calendar", {
 		calendars: [
 			{
 				symbol: "calendar-alt",
-				url: "https://www.calendarlabs.com/templates/ical/US-Holidays.ics"
+				url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics",
 			}
 		],
 		titleReplace: {
@@ -160,6 +161,19 @@ Module.register("calendar", {
 		}
 
 		this.updateDom(this.config.animationSpeed);
+	},
+
+	notificationReceived: function (notification, payload, sender) {
+		if (notification === "MY_CALENDAR_URL")	{
+			/*
+			// This was just to test if the notifications were caught inside calendar, it works
+			potatoString = "Caught the " + notification + " from " + sender + " inside calendar's notification received with payload: " + payload;
+			console.log(potatoString);
+			*/
+			// insert the new url calling function
+			this.insertNewCalendarURL(payload);
+			
+		}
 	},
 
 	// Override dom generator.
@@ -483,11 +497,19 @@ Module.register("calendar", {
 	hasCalendarURL: function (url) {
 		for (const calendar of this.config.calendars) {
 			if (calendar.url === url) {
+				if (url === "https://calendar.google.com/calendar/ical/smartmirrorteam8%40gmail.com/private-e56f47f628729593a8349f0e4e728352/basic.ics"){
+					console.log("caught team8s calendar");
+				}
 				return true;
 			}
 		}
 
 		return false;
+	},
+
+	insertNewCalendarURL: function (potato)	{
+		//this.config.calendars.url = user_url;
+		this.user_url = potato;
 	},
 
 	/**

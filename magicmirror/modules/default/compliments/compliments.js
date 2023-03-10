@@ -182,8 +182,5 @@ Module.register("compliments", {
 		if (notification === "CURRENTWEATHER_TYPE") {
 			this.currentWeatherType = payload.type;
 		}
-		else if (notification === "TESTING") {
-			Log.log(this.name + "received the test notification: " + notification + "from sender: " + sender.name);
-		}
 	}
 });

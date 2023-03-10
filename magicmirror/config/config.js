@@ -29,8 +29,8 @@ let config = {
 	language: "en",
 	locale: "en-US",
 	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
-	timeFormat: 12,
-	units: "imperial",
+	timeFormat: 24,
+	units: "metric",
 	// serverOnly:  true/false/"local" ,
 	// local for armv6l processors, default
 	//   starts serveronly and then starts chrome browser
@@ -51,69 +51,18 @@ let config = {
 		},
 		{
 			module: "calendar",
-			header: "Your Calendar",
+			header: "US Holidays",
 			position: "top_left",
 			config: {
 				fetchInterval: 1000,
 				calendars: [
-					/*
 					{
-						symbol: "calendar-check",
-						url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
-					},
-					*/
-					{
-						symbol: "Your Calendar",
-						url: "https://calendar.google.com/calendar/ical/davidpaek98%40gmail.com/private-6a0381d7a681f5b93ba161f227fe507d/basic.ics"
-					},
-					
+						symbol: "Upcoming Events",
+						url: "https://calendar.google.com/calendar/ical/smartmirrorteam8%40gmail.com/private-e56f47f628729593a8349f0e4e728352/basic.ics"
+					}
 				]
 			}
 		},
-		{
-			module: "compliments",
-			position: "lower_third",
-		},
-		/*
-		{
-			module: "compliments",
-			position: "lower_third",
-			config: {
-				compliments: {
-					day_sunny: [
-						"Everyday is a good day but today shines brighter than others",
-						"Don't forget sunscreen"
-					],
-					snow: [
-						"It never snows here"
-					],
-					rain: [
-						"Don't forget an umbrella",
-						"Stay dry"
-					],
-					morning: [
-						"Good morning",
-						"How was your sleep?",
-						"Have a nice day"
-					],
-					afternoon: [
-						"Good afternoon",
-						"I hope you didn't just wake up"
-					],
-					evening: [
-						"What's for dinner?",
-						"Good evening"
-					],
-					"....-01-01": [
-						"Happy New Year"
-					],
-					"....-12-25": [
-						"Merry Christmas"
-					]
-				},
-			},
-		},
-		*/
 		{
 			module: "weather",
 			position: "top_right",
@@ -126,20 +75,50 @@ let config = {
 			}
 		},
 		{
-			module: "helloworld",
-			position: "upper_third"
-		},
-		{
 			module: "weather",
 			position: "top_right",
 			header: "Weather Forecast",
 			config: {
-				colored: true,
 				weatherProvider: "openweathermap",
 				type: "forecast",
 				location: "Los Angeles",
 				locationID: "5368361", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
 				apiKey: "a70ad777aaaa27c1dc13b9a5baf4dc9c"
+			}
+		},
+		{
+			module: 'MMM-SmartTouch', 
+			position: 'bottom_center',    // This can be any of the regions.(bottom-center Recommended)
+			config:{ 
+			  // None configuration options defined 
+			}
+		},
+		{
+			module: "MMM-Dynamic-Modules",
+		},
+		{
+			module:"MMM-PythonPrint",
+			position:"center",
+			disabled:false,
+			config: {
+				// name of the python process to execute (could be python3)
+				pythonName: 'python3',
+				// command file in module folder
+				// if false, YOU will provide the full path to the python program
+				localfolder: true,
+	   
+				// spawn a python pgm that writes over and over (timed maybe), but keeps running
+				command: 'mainPiSubscriber.py',
+				repetative: true,
+	   
+				// spawn a one time output  script, but relaunch it every cycletime milliseconds
+	   
+				// repretative: false,
+				// command: 'printitonce.py',
+				// cycletime: 2000,   // only used in repetative:false
+	   
+				// print debugging messages from the node_helper
+				debug: true
 			}
 		},
 		/*
@@ -149,8 +128,8 @@ let config = {
 			config: {
 				feeds: [
 					{
-						title: "Los Angeles Times",
-						url: "https://www.latimes.com/world-nation/rss2.0.xml#nt=0000016c-0bf3-d57d-afed-2fff84fd0000-1col-7030col1"
+						title: "New York Times",
+						url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
 					}
 				],
 				showSourceTitle: true,
@@ -159,98 +138,10 @@ let config = {
 				broadcastNewsUpdates: true
 			}
 		},
-		*/
 		{
-			module: 'MMM-SmartTouch', 
-			position: 'bottom_center',    // This can be any of the regions.(bottom-center Recommended)
-			config:{ 
-			  // None configuration options defined 
-			}
+			module: "compliments",
+			position: "lower_third"
 		},
-		{
-			module: "MMM-Spotify",
-			position: "lower_third", // "bottom_bar" or "top_bar" for miniBar
-			config: {
-			  debug: false, // debug mode
-			  style: "default", // "default" or "mini" available (inactive for miniBar)
-			  moduleHeight: 360,
-			  moduleWidth: 230, // width of the module in px
-			  control: "default", // "default" or "hidden"
-			  showAlbumLabel: true, // if you want to show the label for the current song album
-			  showVolumeLabel: true, // if you want to show the label for the current volume
-			  showAccountName: false, // also show the current account name in the device label; usefull for multi account setup
-			  showAccountButton: true, // if you want to show the "switch account" control button
-			  showDeviceButton: true, // if you want to show the "switch device" control button
-			  useExternalModal: false, // if you want to use MMM-Modal for account and device popup selection instead of the build-in one (which is restricted to the album image size)
-			  updateInterval: 1000, // update interval when playing
-			  idleInterval: 30000, // update interval on idle
-			  defaultAccount: 0, // default account number, attention : 0 is the first account
-			  defaultDevice: null, // optional - if you want the "SPOTIFY_PLAY" notification to also work from "idle" status, you have to define your default device here (by name)
-			  allowDevices: [], //If you want to limit devices to display info, use this. f.e. allowDevices: ["RASPOTIFY", "My Home speaker"],
-			  onStart: null, // disable onStart feature with `null`
-			  // if you want to send custom notifications when suspending the module, f.e. switch MMM-Touch to a different "mode"
-			  notificationsOnSuspend: [
-				{
-				  notification: "TOUCH_SET_MODE",
-				  payload: "myNormalMode",
-				},
-				{
-				  notification: "WHATEVERYOUWANT",
-				  payload: "sendMe",
-				}
-			  ],
-			  // if you want to send custom notifications when resuming the module, f.e. switch MMM-Touch to a different "mode"
-			  notificationsOnResume: [
-				{
-				  notification: "TOUCH_SET_MODE",
-				  payload: "mySpotifyControlMode",
-				},
-			  ],
-			  deviceDisplay: "Listening on", // text to display in the device block (default style only)
-			  volumeSteps: 5, // in percent, the steps you want to increase or decrese volume when reacting on the "SPOTIFY_VOLUME_{UP,DOWN}" notifications
-			  // miniBar is no longer supported, use at your own "risk". Will be removed in a future version
-			  miniBarConfig: {
-				album: true, // display Album name in miniBar style
-				scroll: true, // scroll title / artist / album in miniBar style
-				logo: true, // display Spotify logo in miniBar style 
-			  }
-			}
-		},
-		/*
-		{
-			module: 'MMM-NotificationTrigger',
-			//This module works in Background, so you don't need to describe `position`.
-			config: {
-			  useWebhook: false, // If you want to activate webhook as Notification emitter, set true. (eg. IFTTT)
-			  triggers:[ // Array of triggers.
-				{
-				  trigger: "INCOMINIG_NOTIFICATION", //REQUIRED
-				  triggerSenderFilter: (sender) => { //OPTIONAL should return true or false
-					if (sender == "....") {
-					  return true
-					}
-					return false
-				  },
-				  triggerPayloadFilter: (payload) => { //OPTIONAL should return true or false
-					if (typeof payload.value !== 'undefined' && payload.value > 0) {
-					  return true
-					}
-					return false
-				  },
-				  fires: [ // Array of fires. You can enable multi-firing with one trigger.
-					{
-					  fire:"OUTGOING_NOTIFICATION", //REQUIRED
-					  payload: (payload) => { //OPTIONAL. transform received payload to what your target module wants.
-						return payload
-					  },
-					  delay: 1000, //OPTIONAL, if this is set, your outgoing notification will be fired after delay.
-					  exec: "ls -l" //OPTIONAL, if exists, this script will be executed, and the result will be returned with "OUTGOING_NOTIFICATION_RESULT" and payload.  Can also be specified as a function which accepts the payload as an argument and returns the command to execute.
-					},
-				  ],
-				},
-			  ]
-			},
-		}
 		*/
 	]
 };
